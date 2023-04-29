@@ -6,11 +6,7 @@ import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
-import { 
-  FieldValues, 
-  SubmitHandler,
-  useForm
-} from "react-hook-form";
+import { FieldValues, SubmitHandler,useForm } from "react-hook-form";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
@@ -25,19 +21,8 @@ const RegisterModal= () => {
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
-  const { 
-    register, 
-    handleSubmit,
-    formState: {
-      errors,
-    },
-  } = useForm<FieldValues>({
-    defaultValues: {
-      name: '',
-      email: '',
-      password: ''
-    },
-  });
+  const { register, handleSubmit, formState: { errors }} 
+    = useForm<FieldValues>({ defaultValues: { name: '', email: '', password: '' }});
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -49,7 +34,7 @@ const RegisterModal= () => {
       loginModal.onOpen();
     })
     .catch((error) => {
-      toast.error(error);
+      toast.error('Something went wrong');
     })
     .finally(() => {
       setIsLoading(false);
@@ -90,7 +75,7 @@ const RegisterModal= () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
+        required 
       />
     </div>
   )
@@ -113,8 +98,7 @@ const RegisterModal= () => {
       <div 
         className="
           text-neutral-500 
-          text-center 
-          mt-4 
+          text-center
           font-light
         "
       >
@@ -126,7 +110,7 @@ const RegisterModal= () => {
               cursor-pointer 
               hover:underline
             "
-            > Log in</span>
+            > Login</span>
         </p>
       </div>
     </div>
