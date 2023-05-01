@@ -5,10 +5,11 @@ import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
-import { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
 
 interface UserMenuProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
@@ -48,7 +49,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={ () => {} } label="My reservations" />
                 <MenuItem onClick={ () => {} } label="My properties" />
                 <MenuItem onClick={ () => {} } label="Aiebnb" />
-                <MenuItem onClick={ () => {} } label="Logout" />
+                <MenuItem onClick={ () => signOut() } label="Logout" />
               </>
             ) : (
               <>

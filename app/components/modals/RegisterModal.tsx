@@ -25,8 +25,9 @@ const RegisterModal= () => {
     = useForm<FieldValues>({ defaultValues: { name: '', email: '', password: '' }});
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true);
 
+    setIsLoading(true);
+    
     axios.post('/api/register', data)
     .then(() => {
       toast.success('Registered!');
